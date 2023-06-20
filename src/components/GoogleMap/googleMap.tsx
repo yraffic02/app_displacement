@@ -7,7 +7,7 @@ import {
     useJsApiLoader,
     Autocomplete
 } from "@react-google-maps/api";
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 
 const center = { lat: 48.8584, lng: 2.2945 }
 
@@ -17,6 +17,12 @@ export default function GoogleMaps() {
         googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY_MAPS || '',
         libraries: ['places']
     })
+    const [distance, setDistance] = useState<string>('')
+    const [duration, setDuration] = useState<string>('')
+    const [directionsResponse, setDirectionResponse] = useState(null)
+    const originRef = useRef<HTMLInputElement | null>(null)
+    const distiantionRef = useRef<HTMLInputElement | null>(null)
+
 
     if (!isLoaded) {
         return <Skeleton
@@ -31,11 +37,21 @@ export default function GoogleMaps() {
             <div className="flex flex-col gap-2 p-2">
                 <div className="flex gap-4">
                     <Autocomplete>
-                        <TextField id="standard-basic" label="origem" variant="standard" />
+                        <TextField 
+                            id="standard-basic" 
+                            label="origem" 
+                            variant="standard" 
+                            ref={originRef}
+                        />
                     </Autocomplete>
 
                     <Autocomplete>
-                        <TextField id="standard-basic" label="destino" variant="standard" />
+                        <TextField 
+                            id="standard-basic" 
+                            label="destino" 
+                            variant="standard"
+                            ref={distiantionRef} 
+                        />
                     </Autocomplete>
 
                     <Button variant="outlined">calcular</Button>
