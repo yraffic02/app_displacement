@@ -1,44 +1,19 @@
-import * as React from 'react';
+import { useGlobalContext } from '@/app/Context/store';
+import { ILoginInput } from '@/types/types';
+import { TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
-import { style, inputSx } from './style';
-import { useGlobalContext } from '@/app/Context/store';
-import { TextField } from '@mui/material';
+import { SubmitHandler, useForm } from "react-hook-form";
 import { MyButton } from '../Button/MyButton';
 import { Logo } from '../Logo/Logo';
-import { useForm, SubmitHandler } from "react-hook-form"
-import { ILoginInput } from '@/types/types';
+import { Register } from './ModalRegister/Register';
+import { inputSx, style } from './style';
 
 
 function ChildModal() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
-    <React.Fragment>
-      <MyButton type='primary' name='Faca seu cadastro!' onClick={handleOpen} />
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
-      >
-        <Box sx={{ ...style }}>
-          <h2 id="child-modal-title">Text in a child modal</h2>
-          <p id="child-modal-description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          </p>
-          <Button onClick={handleClose}>Close Child Modal</Button>
-        </Box>
-      </Modal>
-    </React.Fragment>
+    <Register />
   );
 }
 
@@ -68,26 +43,14 @@ export default function NestedModal() {
           >
             <TextField
               id="standard-basic"
-              label="Seu login"
+              label="Seu CPF"
               variant="outlined"
               sx={{ ...inputSx }}
-              {...register("login", { required: true })}
+              {...register("cpf", { required: true })}
             />
             {
-              errors.login &&
-              <span className='text-red-600'>Você deve preencher o login</span>
-            }
-            <TextField
-              id="outlined-password-input"
-              label="Senha"
-              type="password"
-              autoComplete="current-password"
-              sx={{ ...inputSx }}
-              {...register("password", { required: true })}
-            />
-            {
-              errors.login &&
-              <span className='text-red-600'>Você deve preencher sua senha</span>
+              errors.cpf &&
+              <span className='text-red-600'>Para fazer login deve informar seu cpf!</span>
             }
             <MyButton type='secondary' name='Login' submitButton='submit' />
           </form>

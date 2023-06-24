@@ -11,7 +11,7 @@ export const style = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  width: 400
+  width: '60%'
 };
 
 

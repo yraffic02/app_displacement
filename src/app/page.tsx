@@ -1,6 +1,6 @@
 'use client'
 import { GoogleMaps } from "@/components/GoogleMap/googleMap";
-import NestedModal from "@/components/Modal/ModalLogin";
+import NestedModal, { ChildModal } from "@/components/Modal/ModalLogin";
 
 export default function Home() {
 

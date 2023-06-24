@@ -21,6 +21,16 @@ export interface IChildrenReact {
 }
 
 export interface ILoginInput {
-    login: string
-    password: string
+    cpf: string
+}
+
+export interface IClient {
+    numberDocument: string
+    typeDocument: string
+    name: string
+    publicPlace: string
+    number: string
+    district: string
+    city: string
+    state: string
 }
