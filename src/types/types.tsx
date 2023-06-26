@@ -36,15 +36,15 @@ export interface IClient {
 }
 
 export interface IConductor {
-    nome: string
-    numeroHabilitacao: string
-    categoriaHabilitacao: string
-    vencimentoHabilitacao: string
+    name: string
+    numberQual: string
+    categoryQual: string
+    maturityQual: string
 }
 
 export interface IVehicle {
-    placa: string
-    marcaModelo: string
-    anoFabricacao: number
-    kmAtual: number
+    plate: string
+    brandModel: string
+    yearManufacture: number
+    currentKm: number
 }
