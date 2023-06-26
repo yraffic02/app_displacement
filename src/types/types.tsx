@@ -2,10 +2,10 @@ import { ButtonProps } from "@mui/material";
 import { Dispatch, MouseEvent, ReactNode, SetStateAction } from "react";
 
 export interface IButton {
-    submitButton?: string 
+    submitButton?: string
     type: string
-    name: string 
-    onClick?: (event: MouseEvent<HTMLButtonElement>)=> void
+    name: string
+    onClick?: (event: MouseEvent<HTMLButtonElement>) => void
     props?: ButtonProps
 }
 
@@ -33,4 +33,18 @@ export interface IClient {
     district: string
     city: string
     state: string
+}
+
+export interface IConductor {
+    nome: string
+    numeroHabilitacao: string
+    categoriaHabilitacao: string
+    vencimentoHabilitacao: string
+}
+
+export interface IVehicle {
+    placa: string
+    marcaModelo: string
+    anoFabricacao: number
+    kmAtual: number
 }
