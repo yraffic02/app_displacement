@@ -1,4 +1,5 @@
 import { ButtonProps } from "@mui/material";
+import { AxiosRequestConfig } from "axios";
 import { Dispatch, MouseEvent, ReactNode, SetStateAction } from "react";
 
 export interface IButton {
@@ -25,14 +26,14 @@ export interface ILoginInput {
 }
 
 export interface IClient {
-    numberDocument: string
-    typeDocument: string
-    name: string
-    publicPlace: string
-    number: string
-    district: string
-    city: string
-    state: string
+    numeroDocumento: string
+    tipoDocumento: string
+    nome: string
+    logradouro: string
+    numero: string
+    bairro: string
+    cidade: string
+    uf: string
 }
 
 export interface IConductor {
@@ -47,4 +48,10 @@ export interface IVehicle {
     brandModel: string
     yearManufacture: number
     currentKm: number
+}
+
+export interface IMakeRequest {
+    method: string
+    endpoint: string
+    requestData?: AxiosRequestConfig<any>
 }

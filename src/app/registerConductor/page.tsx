@@ -17,7 +17,7 @@ export default function RegisterConductor() {
   return (
     <main className="flex flex-col items-center justify-center">
       <form
-        className="flex flex-col gap-2 p-4 w-4/5"
+        className="flex flex-col gap-2 p-10 w-4/5"
         onSubmit={handleSubmit(onSubmit)}
       >
         <h1>Preencha seus dados</h1>

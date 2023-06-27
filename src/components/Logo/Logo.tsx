@@ -10,6 +10,7 @@ export const Logo = () => {
                 color="inherit"
                 aria-label="home"
                 sx={{ mr: 2 }}
+                href="/"
             >
                 <NavigationIcon sx={{
                     color: 'black'

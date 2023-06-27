@@ -1,11 +1,12 @@
 import { MyButton } from '@/components/Button/MyButton';
+import { IClient } from '@/types/types';
 import { TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import * as React from 'react';
-import { inputSx, style } from '../style';
-import { IClient } from '@/types/types';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { inputSx, style } from '../style';
+import { api } from '@/services/api';
 
 export const Register = () => {
     const [open, setOpen] = React.useState(false);
@@ -15,7 +16,19 @@ export const Register = () => {
         formState: { errors },
     } = useForm<IClient>()
 
-    const onSubmit: SubmitHandler<IClient> = (data) => console.log(data)
+    const onSubmit: SubmitHandler<IClient> = async (data) => {
+        try {
+          const res = await api.post('/api/v1/Cliente', data) 
+
+          if(res.status === 200){
+            alert('usuario cadastrado!')
+            handleClose()
+          }
+        
+        } catch (error) {
+            alert('error serve 500!')
+        }
+    }
 
     const handleOpen = () => {
         setOpen(true);
@@ -44,10 +57,10 @@ export const Register = () => {
                             label="Numero do documento"
                             variant="outlined"
                             sx={{ ...inputSx }}
-                            {...register("numberDocument", { required: true })}
+                            {...register("numeroDocumento", { required: true })}
                         />
                         {
-                            errors.numberDocument &&
+                            errors.numeroDocumento &&
                             <span className='text-red-600'>Para fazer login deve informar seu cpf!</span>
                         }
                         <TextField
@@ -55,10 +68,10 @@ export const Register = () => {
                             label="Tipo do documento"
                             variant="outlined"
                             sx={{ ...inputSx }}
-                            {...register("typeDocument", { required: true })}
+                            {...register("tipoDocumento", { required: true })}
                         />
                         {
-                            errors.typeDocument &&
+                            errors.tipoDocumento &&
                             <span className='text-red-600'>Para fazer login deve informar seu cpf!</span>
                         }
                         <TextField
@@ -66,10 +79,10 @@ export const Register = () => {
                             label="Seu nome completo"
                             variant="outlined"
                             sx={{ ...inputSx }}
-                            {...register("name", { required: true })}
+                            {...register("nome", { required: true })}
                         />
                         {
-                            errors.name &&
+                            errors.nome &&
                             <span className='text-red-600'>Para fazer login deve informar seu cpf!</span>
                         }
                         <TextField
@@ -77,10 +90,10 @@ export const Register = () => {
                             label="Logradouro"
                             variant="outlined"
                             sx={{ ...inputSx }}
-                            {...register("publicPlace", { required: true })}
+                            {...register("logradouro", { required: true })}
                         />
                         {
-                            errors.publicPlace &&
+                            errors.logradouro &&
                             <span className='text-red-600'>Para fazer login deve informar seu cpf!</span>
                         }
                         <TextField
@@ -88,10 +101,10 @@ export const Register = () => {
                             label="Numero"
                             variant="outlined"
                             sx={{ ...inputSx }}
-                            {...register("number", { required: true })}
+                            {...register("numero", { required: true })}
                         />
                         {
-                            errors.number &&
+                            errors.numero &&
                             <span className='text-red-600'>Para fazer login deve informar seu cpf!</span>
                         }
                         <TextField
@@ -99,10 +112,10 @@ export const Register = () => {
                             label="Bairro"
                             variant="outlined"
                             sx={{ ...inputSx }}
-                            {...register("district", { required: true })}
+                            {...register("bairro", { required: true })}
                         />
                         {
-                            errors.district &&
+                            errors.bairro &&
                             <span className='text-red-600'>Para fazer login deve informar seu cpf!</span>
                         }
                         <TextField
@@ -110,10 +123,10 @@ export const Register = () => {
                             label="Cidade"
                             variant="outlined"
                             sx={{ ...inputSx }}
-                            {...register("city", { required: true })}
+                            {...register("cidade", { required: true })}
                         />
                         {
-                            errors.city &&
+                            errors.cidade &&
                             <span className='text-red-600'>Para fazer login deve informar seu cpf!</span>
                         }
                         <TextField
@@ -121,10 +134,10 @@ export const Register = () => {
                             label="Uf"
                             variant="outlined"
                             sx={{ ...inputSx }}
-                            {...register("state", { required: true })}
+                            {...register("uf", { required: true })}
                         />
                         {
-                            errors.state &&
+                            errors.uf &&
                             <span className='text-red-600'>Para fazer login deve informar seu cpf!</span>
                         }
                         <MyButton type='secondary' name='Cadastrar' submitButton='submit'/>
