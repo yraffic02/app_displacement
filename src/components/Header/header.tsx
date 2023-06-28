@@ -7,6 +7,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { useState } from 'react';
 import { MyButton } from '../Button/MyButton';
 import { Logo } from '../Logo/Logo';
+import Link from 'next/link';
 
 function stringToColor(string: string) {
   let hash = 0;
@@ -59,7 +60,7 @@ export default function ButtonAppBar() {
     setAnchorEl(null);
   }
 
-  const logout = () =>{
+  const logout = () => {
     localStorage.clear()
     handleClose()
   }
@@ -76,12 +77,17 @@ export default function ButtonAppBar() {
           <Logo />
           {
             localStorage.getItem('isLogged') ?
-                <Avatar
-                  {...stringAvatar(userName)}
-                  onClick={handleClick}
-                />
+              <Avatar
+                {...stringAvatar(userName)}
+                onClick={handleClick}
+              />
               :
-              <MyButton type='primary' name='Fazer login' onClick={toggleModal} />
+              <>
+                <MyButton type='primary' name='Fazer login' onClick={toggleModal} />
+                <Link href='/conductor'className='text-black'>
+                  Página do condutor
+                </Link>
+              </>
           }
           <Menu
             id="basic-menu"
