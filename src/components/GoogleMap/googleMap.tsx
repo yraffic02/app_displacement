@@ -1,6 +1,7 @@
 'use client'
-import NavigationIcon from '@mui/icons-material/Navigation';
-import { Alert, Box, Fab, Skeleton, Stack } from "@mui/material";
+import DirectionsIcon from '@mui/icons-material/Directions';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import { Alert, Box, IconButton, Skeleton, Stack } from "@mui/material";
 import {
     Autocomplete,
     DirectionsRenderer,
@@ -10,6 +11,7 @@ import {
 } from "@react-google-maps/api";
 import { useEffect, useRef, useState } from "react";
 import { MyButton } from '../Button/MyButton';
+import { Home } from '@mui/icons-material';
 
 
 export const GoogleMaps = () => {
@@ -110,9 +112,9 @@ export const GoogleMaps = () => {
     }
 
     return (
-        <Box sx={{ width: '100%', height: '100%'}}>
+        <Box sx={{ width: '100%', height: '100%' }}>
             <Box sx={{
-                display:'flex',
+                display: 'flex',
                 flexDirection: 'column',
                 gap: '2rem',
                 p: '1rem'
@@ -151,14 +153,17 @@ export const GoogleMaps = () => {
 
                     <p>duração:</p>
                     <span>{duration}</span>
+                    <IconButton aria-label="Calcular rota" onClick={calculateRoute}>
+                        <DirectionsIcon />
+                    </IconButton>
 
-                    <MyButton type='primary' name='calcular rota' onClick={calculateRoute} />
+                    <IconButton aria-label="limpar pesquisa" onClick={cleanRoute} >
+                        <DeleteForeverOutlinedIcon />
+                    </IconButton>
 
-                    <MyButton type='secondary' name='Limpar' onClick={cleanRoute} />
-
-                    <Fab variant='circular' onClick={() => map.panTo(currentCenter)}>
-                        <NavigationIcon />
-                    </Fab>
+                    <IconButton color="primary"  aria-label="minha localização" onClick={() => map.panTo(currentCenter)}>
+                        <Home />
+                    </IconButton>
                 </div>
             </Box>
             <GoogleMap
@@ -166,7 +171,7 @@ export const GoogleMaps = () => {
                 zoom={17}
                 mapContainerStyle={{
                     width: '100vw',
-                    height: '100vh'
+                    height: '60vh'
                 }}
                 options={{
                     fullscreenControl: false,
