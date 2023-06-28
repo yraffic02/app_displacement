@@ -59,6 +59,11 @@ export default function ButtonAppBar() {
     setAnchorEl(null);
   }
 
+  const logout = () =>{
+    localStorage.clear()
+    handleClose()
+  }
+
   return (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', aligngItems: 'center' }}>
       <AppBar
@@ -87,9 +92,8 @@ export default function ButtonAppBar() {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem onClick={handleClose}>Conta</MenuItem>
+            <MenuItem onClick={logout}>sair</MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>
