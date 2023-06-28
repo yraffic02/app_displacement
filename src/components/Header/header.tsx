@@ -1,10 +1,11 @@
 'use client'
+import { useGlobalContext } from '@/app/Context/store';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import { useGlobalContext } from '@/app/Context/store';
 import { MyButton } from '../Button/MyButton';
 import { Logo } from '../Logo/Logo';
+import { Avatar } from '@mui/material';
 
 function stringToColor(string: string) {
   let hash = 0;
@@ -34,9 +35,10 @@ function stringAvatar(name: string) {
 }
 
 export default function ButtonAppBar() {
-  const { toggleModal } = useGlobalContext()
+  const { toggleModal, userName } = useGlobalContext()
+
   return (
-    <Box sx={{display:'flex', justifyContent: 'space-between', aligngItems: 'center' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', aligngItems: 'center' }}>
       <AppBar
         position="static"
         sx={{
@@ -45,8 +47,12 @@ export default function ButtonAppBar() {
       >
         <Toolbar sx={{ gap: '1rem' }}>
           <Logo />
-          <MyButton type='primary' name='Fazer login' onClick={toggleModal} />
-          {/* <Avatar {...stringAvatar('Yuri Raffic')} /> */}
+          {
+            localStorage.getItem('isLogged') ?
+            <Avatar {...stringAvatar(userName)} />
+            :
+            <MyButton type='primary' name='Fazer login' onClick={toggleModal} />
+          }
         </Toolbar>
       </AppBar>
     </Box>

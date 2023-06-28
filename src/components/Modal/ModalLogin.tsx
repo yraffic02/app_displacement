@@ -20,7 +20,7 @@ function ChildModal() {
 }
 
 export default function NestedModal() {
-  const { isOpen, toggleModal, setUserName } = useGlobalContext()
+  const { isOpen, toggleModal } = useGlobalContext()
   const {
     register,
     handleSubmit,
@@ -35,7 +35,7 @@ export default function NestedModal() {
 
       if(res.status === 200){
         localStorage.setItem('isLogged', 'true')
-        setUserName(res.data[0].nome)
+        localStorage.setItem('name', res.data[0].nome)
         toggleModal()
       } else {
         alert('o seu cpf pode não está cadastrado ou pode estar errado!')
