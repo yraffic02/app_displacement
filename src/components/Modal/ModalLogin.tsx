@@ -8,6 +8,8 @@ import { MyButton } from '../Button/MyButton';
 import { Logo } from '../Logo/Logo';
 import { Register } from './ModalRegister/Register';
 import { inputSx, style } from './style';
+import { api } from '@/services/api';
+import { AxiosResponse } from 'axios';
 
 
 function ChildModal() {
@@ -18,14 +20,31 @@ function ChildModal() {
 }
 
 export default function NestedModal() {
-  const { isOpen, toggleModal } = useGlobalContext()
+  const { isOpen, toggleModal, setUserName } = useGlobalContext()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ILoginInput>()
 
-  const onSubmit: SubmitHandler<ILoginInput> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<ILoginInput> = async (data) => {
+    try {
+      const {numeroDocumento} = data
+
+      const res = await api.get('/api/v1/Cliente', numeroDocumento)
+
+      if(res.status === 200){
+        localStorage.setItem('isLogged', 'true')
+        setUserName(res.data[0].nome)
+        toggleModal()
+      } else {
+        alert('o seu cpf pode não está cadastrado ou pode estar errado!')
+      }
+
+    } catch (error) {
+      alert('erro no servidor')
+    }
+  }
 
   return (
     <div>
@@ -46,10 +65,10 @@ export default function NestedModal() {
               label="Seu CPF"
               variant="outlined"
               sx={{ ...inputSx }}
-              {...register("cpf", { required: true })}
+              {...register("numeroDocumento", { required: true })}
             />
             {
-              errors.cpf &&
+              errors.numeroDocumento &&
               <span className='text-red-600'>Para fazer login deve informar seu cpf!</span>
             }
             <MyButton type='secondary' name='Login' submitButton='submit' />

@@ -22,7 +22,7 @@ export interface IChildrenReact {
 }
 
 export interface ILoginInput {
-    cpf: string
+    numeroDocumento:  AxiosRequestConfig<any> | undefined
 }
 
 export interface IClient {
@@ -48,10 +48,4 @@ export interface IVehicle {
     brandModel: string
     yearManufacture: number
     currentKm: number
-}
-
-export interface IMakeRequest {
-    method: string
-    endpoint: string
-    requestData?: AxiosRequestConfig<any>
 }
