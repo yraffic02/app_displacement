@@ -1,6 +1,6 @@
 'use client'
 import NavigationIcon from '@mui/icons-material/Navigation';
-import { Alert, Fab, Skeleton, Stack } from "@mui/material";
+import { Alert, Box, Fab, Skeleton, Stack } from "@mui/material";
 import {
     Autocomplete,
     DirectionsRenderer,
@@ -110,15 +110,20 @@ export const GoogleMaps = () => {
     }
 
     return (
-        <>
-            <div className="flex flex-col gap-2 absolute bottom-10 z-50  bg-white rounded-xl p-4 w-4/5">
+        <Box sx={{ width: '100%', height: '100%'}}>
+            <Box sx={{
+                display:'flex',
+                flexDirection: 'column',
+                gap: '2rem',
+                p: '1rem'
+            }}>
                 {
                     errorMessage &&
                     <Stack sx={{ width: '100%' }} spacing={2}>
                         <Alert severity="error" onClick={closeError} >Preencha sua origem e destino - Por favor !</Alert>
                     </Stack>
                 }
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
                     <Autocomplete >
                         <input
                             type="text"
@@ -154,9 +159,8 @@ export const GoogleMaps = () => {
                     <Fab variant='circular' onClick={() => map.panTo(currentCenter)}>
                         <NavigationIcon />
                     </Fab>
-
                 </div>
-            </div>
+            </Box>
             <GoogleMap
                 center={currentCenter}
                 zoom={17}
@@ -187,6 +191,6 @@ export const GoogleMaps = () => {
                     <DirectionsRenderer directions={directionsResponse} />
                 }
             </GoogleMap>
-        </>
+        </Box>
     )
 }

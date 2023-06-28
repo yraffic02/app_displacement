@@ -49,6 +49,7 @@ function stringAvatar(name: string) {
 export default function ButtonAppBar() {
   const { toggleModal, userName } = useGlobalContext()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const logged = localStorage.getItem('isLogged') 
 
   const open = Boolean(anchorEl)
 
@@ -66,7 +67,7 @@ export default function ButtonAppBar() {
   }
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', aligngItems: 'center' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', aligngItems: 'center', width: '100vw'}}>
       <AppBar
         position="static"
         sx={{
@@ -76,7 +77,7 @@ export default function ButtonAppBar() {
         <Toolbar sx={{ gap: '1rem' }}>
           <Logo />
           {
-            localStorage.getItem('isLogged') ?
+            logged ?
               <Avatar
                 {...stringAvatar(userName)}
                 onClick={handleClick}
@@ -84,7 +85,7 @@ export default function ButtonAppBar() {
               :
               <>
                 <MyButton type='primary' name='Fazer login' onClick={toggleModal} />
-                <Link href='/conductor'className='text-black'>
+                <Link href='/conductor'className='text-black text-bold'>
                   Página do condutor
                 </Link>
               </>
