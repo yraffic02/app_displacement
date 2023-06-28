@@ -8,7 +8,7 @@ export const MyButton = ({type, onClick, name, submitButton }: IButton) => {
             variant="text"
             onClick={onClick}
             sx={{
-                color: "black",
+                color: "white",
                 backgroundColor: "black",
                 "&:hover": {
                     color: "white",

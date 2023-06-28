@@ -1,11 +1,12 @@
 'use client'
 import { useGlobalContext } from '@/app/Context/store';
+import { Avatar, Menu, MenuItem } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
+import { useState } from 'react';
 import { MyButton } from '../Button/MyButton';
 import { Logo } from '../Logo/Logo';
-import { Avatar } from '@mui/material';
 
 function stringToColor(string: string) {
   let hash = 0;
@@ -26,16 +27,37 @@ function stringToColor(string: string) {
 }
 
 function stringAvatar(name: string) {
+  const names = name.split(' ');
+  let children = '';
+
+  if (names.length > 0) {
+    children = names[0][0];
+
+    if (names.length > 1) {
+      children += names[1][0];
+    }
+  }
+
   return {
     sx: {
       bgcolor: stringToColor(name),
     },
-    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+    children,
   };
 }
-
 export default function ButtonAppBar() {
   const { toggleModal, userName } = useGlobalContext()
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const open = Boolean(anchorEl)
+
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  }
 
   return (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', aligngItems: 'center' }}>
@@ -49,10 +71,26 @@ export default function ButtonAppBar() {
           <Logo />
           {
             localStorage.getItem('isLogged') ?
-            <Avatar {...stringAvatar(userName)} />
-            :
-            <MyButton type='primary' name='Fazer login' onClick={toggleModal} />
+                <Avatar
+                  {...stringAvatar(userName)}
+                  onClick={handleClick}
+                />
+              :
+              <MyButton type='primary' name='Fazer login' onClick={toggleModal} />
           }
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={handleClose}>Logout</MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
     </Box>

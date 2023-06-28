@@ -25,7 +25,7 @@ export const GlobalContextProvider = ({ children }: IChildrenReact) => {
         if(getName){
             setUserName(getName)
         }
-    }, [])
+    }, [userName])
 
     const toggleModal = () => {
         setIsOpen(!isOpen);
