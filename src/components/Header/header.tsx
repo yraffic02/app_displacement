@@ -49,7 +49,8 @@ function stringAvatar(name: string) {
 export default function ButtonAppBar() {
   const { toggleModal, userName } = useGlobalContext()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const logged = localStorage.getItem('isLogged') 
+  const logged: string | null = localStorage.getItem('isLogged') ? localStorage.getItem('isLogged') : null
+
 
   const open = Boolean(anchorEl)
 

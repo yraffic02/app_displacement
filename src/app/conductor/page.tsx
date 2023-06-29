@@ -1,5 +1,9 @@
-export default function Conductor(){
-    return(
-        <h1>condutor</h1>
+import { GoogleMaps } from "@/components/GoogleMap/googleMap";
+
+export default function Conductor() {
+    return (
+        <main>
+            <GoogleMaps />
+        </main>
     )
 }

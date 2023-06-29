@@ -161,7 +161,7 @@ export const GoogleMaps = () => {
                         <DeleteForeverOutlinedIcon />
                     </IconButton>
 
-                    <IconButton color="primary"  aria-label="minha localização" onClick={() => map.panTo(currentCenter)}>
+                    <IconButton color="primary" aria-label="minha localização" onClick={() => map.panTo(currentCenter)}>
                         <Home />
                     </IconButton>
                 </div>
