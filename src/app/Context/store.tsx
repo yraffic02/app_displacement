@@ -4,7 +4,6 @@ import { IChildrenReact, IContextProps } from "@/types/types";
 import {
     createContext,
     useContext,
-    useEffect,
     useState
 } from "react";
 
@@ -19,13 +18,13 @@ export const GlobalContextProvider = ({ children }: IChildrenReact) => {
     const [isOpen, setIsOpen] = useState(false)
     const [ userName, setUserName] = useState('')
 
-    useEffect(()=>{
+    /* useEffect(()=>{
         const getName: string | any = localStorage.getItem('name')
 
         if(getName){
             setUserName(getName)
         }
-    }, [userName])
+    }, [userName]) */
 
     const toggleModal = () => {
         setIsOpen(!isOpen);

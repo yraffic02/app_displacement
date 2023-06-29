@@ -67,7 +67,7 @@ export default function ButtonAppBar() {
   }
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', aligngItems: 'center', width: '100vw'}}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', aligngItems: 'center', width: '100vw' }}>
       <AppBar
         position="static"
         sx={{
@@ -78,17 +78,17 @@ export default function ButtonAppBar() {
           <Logo />
           {
             userName === '' ?
+              <>
+                <MyButton type='primary' name='Fazer login' onClick={toggleModal} />
+                <Link href='/conductor' className='text-black text-bold'>
+                  Página do condutor
+                </Link>
+              </>
+              :
               <Avatar
                 {...stringAvatar(userName)}
                 onClick={handleClick}
               />
-              :
-              <>
-                <MyButton type='primary' name='Fazer login' onClick={toggleModal} />
-                <Link href='/conductor'className='text-black text-bold'>
-                  Página do condutor
-                </Link>
-              </>
           }
           <Menu
             id="basic-menu"
