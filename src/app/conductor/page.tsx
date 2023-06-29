@@ -3,7 +3,7 @@ import { GoogleMaps } from "@/components/GoogleMap/googleMap";
 export default function Conductor() {
     return (
         <main>
-            <GoogleMaps />
+            <p>condutor</p>
         </main>
     )
 }
